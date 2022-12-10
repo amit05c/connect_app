@@ -5,13 +5,14 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
-  const history = useHistory();
+
+  const navigate= useNavigate()
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -31,7 +32,7 @@ const Signup = () => {
         position: "bottom",
       });
       setPicLoading(false);
-      return;
+      // return;
     }
     if (password !== confirmpassword) {
       toast({
@@ -41,7 +42,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      return;
+      // return;
     }
     console.log(name, email, password, pic);
     try {
@@ -70,8 +71,10 @@ const Signup = () => {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("isAuth",JSON.stringify("true"))
       setPicLoading(false);
-      history.push("/chats");
+      // history.push("/chats");
+      navigate("/chats")
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -95,7 +98,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      return;
+      // return;
     }
     console.log(pics);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -126,7 +129,7 @@ const Signup = () => {
         position: "bottom",
       });
       setPicLoading(false);
-      return;
+      // return;
     }
   };
 

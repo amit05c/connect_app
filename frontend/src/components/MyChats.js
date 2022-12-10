@@ -2,22 +2,23 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getSender } from "../config/ChatLogics";
 import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
-import { ChatState } from "../Context/ChatProvider";
+import { ChatContext } from "../Context/ChatProvider";
+// import { ChatState } from "../Context/ChatProvider";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
 
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+  const { selectedChat, setSelectedChat, user, chats, setChats } = useContext(ChatContext);
 
   const toast = useToast();
 
   const fetchChats = async () => {
-    // console.log(user._id);
+    
     try {
       const config = {
         headers: {
@@ -26,7 +27,7 @@ const MyChats = ({ fetchAgain }) => {
       };
 
       const { data } = await axios.get("https://chat-app-production-6faf.up.railway.app/api/chat", config);
-      console.log(data)  //http://localhost:8080/api/chat
+      //console.log(data)  //http://localhost:8080/api/chat
       setChats(data);
     } catch (error) {
       toast({
@@ -39,7 +40,7 @@ const MyChats = ({ fetchAgain }) => {
       });
     }
   };
-
+let x= JSON.parse(localStorage.getItem("userInfo"))
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
@@ -48,7 +49,7 @@ const MyChats = ({ fetchAgain }) => {
 
   return (
     <Box
-      d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
       flexDir="column"
       alignItems="center"
       p={3}
@@ -56,13 +57,14 @@ const MyChats = ({ fetchAgain }) => {
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
       borderWidth="1px"
+      // border="1px solid red"
     >
       <Box
         pb={3}
         px={3}
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
-        d="flex"
+        display="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
@@ -79,7 +81,7 @@ const MyChats = ({ fetchAgain }) => {
         </GroupChatModal>
       </Box>
       <Box
-        d="flex"
+        display="flex"
         flexDir="column"
         p={3}
         bg="#F8F8F8"
@@ -87,6 +89,7 @@ const MyChats = ({ fetchAgain }) => {
         h="100%"
         borderRadius="lg"
         overflowY="hidden"
+        // border={"1px solid red"}
       >
         {chats ? (
           <Stack overflowY="scroll">
@@ -103,7 +106,7 @@ const MyChats = ({ fetchAgain }) => {
               >
                 <Text>
                   {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
+                    ? getSender(loggedUser || x, chat.users)
                     : chat.chatName}
                 </Text>
                 {chat.latestMessage && (

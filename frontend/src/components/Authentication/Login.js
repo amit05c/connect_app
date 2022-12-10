@@ -5,17 +5,15 @@ import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { useHistory} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  
-  const history = useHistory();
+  const navigate= useNavigate()
 
   const submitHandler = async () => {
     setLoading(true);
@@ -28,7 +26,7 @@ const Login = () => {
         position: "bottom",
       });
       setLoading(false);
-      return;
+      // return;
     }
 
     // console.log(email, password);
@@ -45,7 +43,7 @@ const Login = () => {
         { email, password },
         config
       );
-
+    console.log(data)
       // console.log(JSON.stringify(data));
       toast({
         title: "Login Successful",
@@ -55,12 +53,15 @@ const Login = () => {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("isAuth",JSON.stringify("true"))
       setLoading(false);
-      history.push("/chats");
+      navigate("/chats")
     } catch (error) {
+      console.log(error)
       toast({
         title: "Error Occured!",
-        description: error.response.data.message,
+        // description: error.response.data.message,
+        description: "something wrong",
         status: "error",
         duration: 5000,
         isClosable: true,
