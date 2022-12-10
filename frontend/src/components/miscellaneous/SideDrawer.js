@@ -183,6 +183,7 @@ function SideDrawer() {
                 name={user.name}
                 src={user.pic}
               />
+              {console.log(user.name)}
             </MenuButton>
             <MenuList>
               <ProfileModal user={user}>
