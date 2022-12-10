@@ -32,7 +32,7 @@ const Signup = () => {
         position: "bottom",
       });
       setPicLoading(false);
-      // return;
+      return;
     }
     if (password !== confirmpassword) {
       toast({
@@ -42,7 +42,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      // return;
+      return;
     }
     console.log(name, email, password, pic);
     try {
@@ -73,7 +73,6 @@ const Signup = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       localStorage.setItem("isAuth",JSON.stringify("true"))
       setPicLoading(false);
-      // history.push("/chats");
       navigate("/chats")
     } catch (error) {
       toast({
@@ -98,7 +97,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      // return;
+      return;
     }
     console.log(pics);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -129,7 +128,7 @@ const Signup = () => {
         position: "bottom",
       });
       setPicLoading(false);
-      // return;
+      return;
     }
   };
 
