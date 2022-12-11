@@ -53,7 +53,7 @@ const Signup = () => {
       };
       const { data } = await axios.post(
         // "http://localhost:8080/api/user",
-        "https://chat-app-production-6faf.up.railway.app/api/user",
+        "/api/user",
         {
           name,
           email,

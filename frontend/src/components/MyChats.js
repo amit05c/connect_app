@@ -26,7 +26,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await axios.get("https://chat-app-production-6faf.up.railway.app/api/chat", config);
+      const { data } = await axios.get("/api/chat", config);
       //console.log(data)  //http://localhost:8080/api/chat
       setChats(data);
     } catch (error) {

@@ -39,7 +39,7 @@ const Login = () => {
 
       const { data } = await axios.post(
         // "http://localhost:8080/api/user/login",
-        "https://chat-app-production-6faf.up.railway.app/api/user/login",
+        "/api/user/login",
         { email, password },
         config
       );

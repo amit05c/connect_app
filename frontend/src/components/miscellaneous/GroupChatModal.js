@@ -59,7 +59,7 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`https://chat-app-production-6faf.up.railway.app/api/user?search=${search}`, config);
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
@@ -98,7 +98,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `https://chat-app-production-6faf.up.railway.app/api/chat/group`,
+        `/api/chat/group`,
         {
           name: groupChatName,
           users: selectedUsers.map((u) => u._id)
