@@ -2,7 +2,7 @@
   "name": "connect-deploy",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://chat-app-production-6faf.up.railway.app",
+  "proxy": "http://127.0.0.1:8080",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.4.3",
