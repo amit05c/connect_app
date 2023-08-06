@@ -53,7 +53,7 @@ const server=app.listen(PORT,async()=>{
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-      origin: "http://localhost:3000" || "https://woozy-bottle-production.up.railway.app",
+      origin: "http://localhost:3000" || "https://dashing-mermaid-36cf23.netlify.app/",
       // credentials: true,
     },
   });

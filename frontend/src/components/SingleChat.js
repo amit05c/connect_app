@@ -16,8 +16,9 @@ import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatContext } from "../Context/ChatProvider";
 
-const ENDPOINT = "https://woozy-bottle-production.up.railway.app"
-//"http://localhost:8080"
+const ENDPOINT = 
+// "https://woozy-bottle-production.up.railway.app"
+"http://localhost:8080"
 //"https://chat-app-production-6faf.up.railway.app"; // "; -> After deployment
 var socket, selectedChatCompare;
 
