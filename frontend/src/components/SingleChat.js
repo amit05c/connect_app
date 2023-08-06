@@ -18,7 +18,8 @@ import { ChatContext } from "../Context/ChatProvider";
 
 const ENDPOINT = 
 // "https://woozy-bottle-production.up.railway.app"
-"http://localhost:8080"
+// "http://localhost:8080"
+"https://connect-app-backend.onrender.com/"
 //"https://chat-app-production-6faf.up.railway.app"; // "; -> After deployment
 var socket, selectedChatCompare;
 
